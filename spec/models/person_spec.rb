@@ -5,6 +5,10 @@ describe Person, type: :model do
     allow(Date).to receive(:today).and_return('15/12/2015'.to_date)
   end
 
+  context 'associations' do
+    it { is_expected.to belong_to :father }
+  end
+
   context 'validations' do
     it { is_expected.to validate_presence_of :first_name }
     it { is_expected.to validate_presence_of :last_name }
