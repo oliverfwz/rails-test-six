@@ -5,11 +5,6 @@ describe Person, type: :model do
     allow(Date).to receive(:today).and_return('15/12/2015'.to_date)
   end
 
-  context 'associations' do
-    it { is_expected.to belong_to :father }
-    it { is_expected.to belong_to :mother }
-  end
-
   context 'validations' do
     it { is_expected.to validate_presence_of :first_name }
     it { is_expected.to validate_presence_of :last_name }
@@ -46,20 +41,6 @@ describe Person, type: :model do
     it 'show full name' do
       john_name = john.name
       expect(john_name).to eq 'John Nguyen'
-    end
-  end
-
-  describe '#parents' do
-    let!(:father) { create :father }
-    let!(:mother) { create :mother }
-    let!(:haha) { create(:person, first_name: 'HaHa', father: father, mother: mother) }
-
-    it 'get parents' do
-      haha_parents = haha.parents
-
-      expect(haha_parents.count).to eq 2
-      expect(haha_parents).to include father.becomes(Person)
-      expect(haha_parents).to include mother.becomes(Person)
     end
   end
 end
