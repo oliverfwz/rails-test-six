@@ -1,6 +1,9 @@
 class Person < ActiveRecord::Base
   extend Enumerize
 
+  belongs_to :father
+  belongs_to :mother
+
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :dob,  presence: true
@@ -17,6 +20,18 @@ class Person < ActiveRecord::Base
 
   def name
     first_name + ' ' + last_name
+  end
+
+  def parents
+    Person.where(id: [father_id, mother_id])
+  end
+
+  def children
+    Person.where("father_id = ? OR mother_id = ?", id, id)
+  end
+
+  def say_something
+    "Hello, my name " + name + '.'
   end
 
   protected
