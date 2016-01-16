@@ -22,6 +22,10 @@ class Person < ActiveRecord::Base
     first_name + ' ' + last_name
   end
 
+  def parents
+    Person.where(id: [father_id, mother_id])
+  end
+
   protected
 
   def ensure_valid_age
