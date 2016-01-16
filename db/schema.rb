@@ -11,18 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160116042058) do
+ActiveRecord::Schema.define(version: 20160116044038) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "parents_people", force: :cascade do |t|
-    t.integer "parent_id"
-    t.integer "person_id"
-  end
-
-  add_index "parents_people", ["parent_id"], name: "index_parents_people_on_parent_id", using: :btree
-  add_index "parents_people", ["person_id"], name: "index_parents_people_on_person_id", using: :btree
 
   create_table "people", force: :cascade do |t|
     t.string  "first_name"
