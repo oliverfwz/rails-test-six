@@ -7,6 +7,7 @@ describe Person, type: :model do
 
   context 'associations' do
     it { is_expected.to belong_to :father }
+    it { is_expected.to belong_to :mother }
   end
 
   context 'validations' do

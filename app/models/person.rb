@@ -2,6 +2,7 @@ class Person < ActiveRecord::Base
   extend Enumerize
 
   belongs_to :father
+  belongs_to :mother
 
   validates :first_name, presence: true
   validates :last_name, presence: true
